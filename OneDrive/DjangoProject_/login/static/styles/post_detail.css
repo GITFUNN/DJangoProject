@@ -84,3 +84,8 @@ transition: 0.1s;
     margin-left: 1vw;
     color: grey;
 }
+.like-button {
+    position: absolute;
+color: red;
+}
+

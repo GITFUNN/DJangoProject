@@ -37,23 +37,42 @@
             </a>
             <div class = 'like'>
                 {{i.likes.all|length}}
-            <form action = "{% url 'likes' i.id %}" method = "POST">
+            <form action = "{% url 'likes' i.id %}" method = "POST" class = "like-form">
                 {% csrf_token %}
                 {% if is_like %}
                 <input type="hidden" name="next" value="{{ request.path }}">
-                <button type='submit'>
-                    <i class="fa-solid fa-heart"> </i>       
+                <button class = 'like-button' type='submit'>
+                    <i class="fa-solid fa-heart"></i>       
                 </button>
                 {% else %}
                 <input type="hidden" name="next" value="{{ request.path }}"> 
-                <button type='submit'>
+                <button class = 'like-button' type='submit'>
                     <i class="fa-regular fa-heart"></i>
-                </button>
+                </button> 
                 {% endif %}
             </form>
         {% endfor %}
     </div>
 </section>
+<script>
+    $(document).ready(function () {
+        $('.like-form').submit(function (e) {
+            e.preventDefault(); // Evita que el formulario se envíe normalmente
+            var $form = $(this); // Almacenamos una referencia al formulario actual
+            $.ajax({
+                type: 'POST',
+                url: $form.attr('action'),
+                data: $form.serialize()
+            }).done(function () {
+
+                location.reload();
+
+            }).fail(function () {
+                
+            });
+        });
+    });
+</script>
 </body> 
 </html>
 {% endblock %}
