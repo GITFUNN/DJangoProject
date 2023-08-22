@@ -10,6 +10,7 @@ class Publication (models.Model):
     text_content = models.TextField(max_length=200, default = None)
     author = models.ForeignKey(User, on_delete=models.CASCADE, default = None)
     created_on = models.DateTimeField(default=datetime.now)
+    likes = models.ManyToManyField(User, blank=True, related_name = 'likes')
 
 
     def formatted_created_on_(self):

@@ -17,7 +17,7 @@
 </head>
 
 <body>  
-    {% if user.is_authenticated %}{% endif %}
+    {% if user.is_authenticated %}
         <nav class = 'nav-base'>
             <ul>
                 
@@ -40,6 +40,7 @@
                     </li>
             </ul>
         </nav>
+        {% endif %}
 {% block content %}
 {% endblock %}
 </body>

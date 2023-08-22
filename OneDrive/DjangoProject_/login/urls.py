@@ -11,5 +11,6 @@ urlpatterns = [
     #path('posts/', views.iterate_posts, name='posts'),
     path('<int:post_id>/', views.comments_page, name='comments'),
     path('home/', views.publications_, name='posts_'),
+    path('home/<int:publication_id>/like', views.likes_publication, name = 'likes')
 
 ]   

@@ -29,10 +29,28 @@
                         <div class='comment-post'>
                             <p>{{i.text_content}}</p>
                         </div>
+                    
+                    </div>
                     </div>
                 </div>
             </div>
             </a>
+            <div class = 'like'>
+                {{i.likes.all|length}}
+            <form action = "{% url 'likes' i.id %}" method = "POST">
+                {% csrf_token %}
+                {% if is_like %}
+                <input type="hidden" name="next" value="{{ request.path }}">
+                <button type='submit'>
+                    <i class="fa-solid fa-heart"> </i>       
+                </button>
+                {% else %}
+                <input type="hidden" name="next" value="{{ request.path }}"> 
+                <button type='submit'>
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+                {% endif %}
+            </form>
         {% endfor %}
     </div>
 </section>

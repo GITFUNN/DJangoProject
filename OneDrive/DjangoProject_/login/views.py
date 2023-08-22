@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
@@ -9,6 +9,7 @@ from django import forms
 from .forms import PublicationForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+
 # Create your views here.
 
 
@@ -55,7 +56,7 @@ def signout(request):
 
 
 def signin(request):
-    if request.method == 'GETid_password':
+    if request.method == 'GET':
         return render(request, 'signin.html', {
             'form': AuthenticationForm
 
@@ -151,4 +152,18 @@ def comments_page (request, post_id):
         'comments': comment,
         'form': form,                                     
         })
-     
+
+@login_required  
+def likes_publication(request, publication_id):
+    publication = Publication.objects.get(id = publication_id)
+    is_like = False
+    for like in publication.likes.all():
+        if like == request.user:
+            is_like = True
+            break
+    if not is_like:
+       publication.likes.add(request.user)
+    if is_like:
+        publication.likes.remove(request.user)
+    next = request.POST.get('next', '/')
+    return HttpResponseRedirect(next)
