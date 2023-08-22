@@ -1,0 +1,84 @@
+<!-- inherits from base  --> 
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/comments_detail.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Roboto:ital@1&display=swap" rel="stylesheet">
+    <title>Social Network</title>
+</head>
+<body>
+<div class= 'comment_section'>
+    <section class = 'main-section'>
+        <div class='full-boxer-2'>
+            <div class='content-box'>
+                <div class='box-top'>
+                    <div class='user-comment'>
+                    <div class='user'>
+                        <div class='user-image'>
+                            <img src="{% static 'usuario01.png' %}">
+                        </div>
+                        <div class='name-author'>
+                            <strong>{{publication.author}}</strong>
+                            <p class = 'date'>{{publication.created_on}}</p>
+                        </div>
+                    </div>
+                        <div class='comment-post'>
+                            <p>{{publication.text_content}}</p>
+                        </div>
+                    </div>
+                        <div class = 'form-comment-box'>
+                            <div class='comment-user-image'>
+                                <img src="{% static 'usuario.png' %}">   
+                            </div>
+                            <form method="POST">
+                                {% csrf_token %} 
+                                {{form.comment}}
+                                <label class = "placeholder">¡Post your answer!</label> 
+                                <input type="submit" name="submit_comment" value ='Answer' class = 'submit-button'>
+                            </form>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+ 
+    <section class = 'main'>
+        <div class='full-boxer'> 
+            {% for i in comments  %}
+            <div class='comment-box'>
+                <div class='box-top'>
+                    <div class='profile'>
+                        <div class='profile-image'>
+                            <img src="{% static 'usuario.png' %}">      
+                        </div>
+                        <div class='name'>
+                        <strong>{{i.comment_author}}</strong>
+                        <p class = 'date_1'>{{i.formatted_created_on}}</p>
+                        </div>
+                    </div>
+                <div class = 'comment'>
+                    <p>{{i.comment}}</p>
+                </div>
+            </div>
+
+        </div>
+            {% endfor %}
+    </div>
+   
+    </section>
+</div>
+</body>
+</html>
+{% endblock  %}
+
+

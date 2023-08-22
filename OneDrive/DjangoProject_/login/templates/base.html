@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/styles/base_styles.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+      
+      
+    <title>Social Network</title>
+</head>
+
+<body>  
+    {% if user.is_authenticated %}{% endif %}
+        <nav class = 'nav-base'>
+            <ul>
+                
+                
+                <li class = 'main-button'>
+                    <div class'main-image'>
+                        <i class="fa-solid fa-house"></i>
+                    </div>
+                    <a href="/home"><strong>Inicio</strong></a>
+                </li>
+                    <li class = 'logout-button'>
+                        <div class'logout-image'><div>
+                     
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                       
+                        <a href="/logout/"><strong>Logout</strong></a>
+                    </li>
+                    <li class ='post-button_'>
+
+                    </li>
+            </ul>
+        </nav>
+{% block content %}
+{% endblock %}
+</body>
+
+</html>

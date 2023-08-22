@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Roboto:ital@1&display=swap" rel="stylesheet">
+        <title>Social Network</title>
+    </head>
+{% block content %}
+<head>
+    <title>Crear Publicación</title>
+    {{ error }} 
+</head>
+<body>
+    <h1>Crear New Post</h1>
+    <form action = '/create/' method='POST'>
+        {% csrf_token %} <!-- Create a CSRF token to protect the content  --> 
+        {{form.as_p}} <!-- Render the forms like a parrafs  --> 
+        <button type="submit">Post</button> <!-- Submit the form  -->
+    </form>
+</body>
+{% endblock %}

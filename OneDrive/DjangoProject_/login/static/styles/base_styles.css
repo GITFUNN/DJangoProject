@@ -1,0 +1,66 @@
+
+body {
+ font-family: 'PT Sans', sans-serif;
+ font-family: 'Roboto', sans-serif;
+    background-color: black;;
+}
+
+
+a { 
+text-decoration: none;
+}
+
+*{
+    color: white;
+}
+ul{
+list-style: none;
+}
+.nav-base {
+display: flex;
+flex-direction: column;
+justify-content: column;
+top: 150px;
+position: fixed;
+}
+
+
+
+.main-button{
+position: relative;
+display: flex;
+flex-direction: row;
+padding:30px;
+font-size: 3vh;
+}
+
+
+.main-button i {
+   margin-right:15px;
+   margin-bottom: 5px;
+}
+
+
+.logout-button{
+position: relative;
+display: flex;
+flex-direction: row;
+padding:30px;
+font-size: 3vh;
+
+}
+
+.logout-button i {
+    margin-right:10px;
+
+}
+.post-button_{
+
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    padding:30px;
+    font-size: 3vh;
+
+}
+

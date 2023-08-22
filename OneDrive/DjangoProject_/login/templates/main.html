@@ -1,0 +1,22 @@
+{% extends 'base.html' %} <!-- inherits from base  --> 
+{% load static %}
+
+{% block content%} <!-- Create a content inside the base template --> 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Network</title>
+</head>
+<body>
+<li>
+<a href="/create">Create Post</a>
+</li>
+<li>
+<a href="/posts">Show Posts</a>
+</li>
+</body>
+{% endblock %}
+
+

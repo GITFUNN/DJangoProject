@@ -1,0 +1,34 @@
+ <!-- inherits from base  --> 
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/styles/login_styles.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Roboto:ital@1&display=swap" rel="stylesheet">
+    <title>Social Network</title>
+</head>
+<body>
+    <div class = 'container'>
+        <form action="/signin/" method="POST" class="form_signin">
+        {% csrf_token %}
+        {{error}}
+        <div class = 'input-group-4'>
+        {{form.username}}
+        <label class = "placeholder">Username</label>
+        </div>
+        <div class = 'input-group-5'>
+        {{form.password}}
+        <label class = "placeholder">Password</label>
+        </div>
+        <button type="submit">Signin</button>
+        </form>
+    </div>
+</body>
+{% endblock %}
