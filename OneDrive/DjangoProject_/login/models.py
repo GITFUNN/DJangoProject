@@ -32,6 +32,8 @@ class Comment(models.Model):
     publication = models.ForeignKey(Publication, on_delete= models.CASCADE, related_name='comments')
     created_on = models.DateTimeField(default=datetime.now)
     active = models.BooleanField(default=True)
+    likes_C = models.ManyToManyField(User, blank=True, related_name = 'likes_C')
+
 
     def formatted_created_on(self):
         return self.created_on.strftime("%b. %d")

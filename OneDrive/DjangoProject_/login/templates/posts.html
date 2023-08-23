@@ -3,13 +3,12 @@
 {% block content%}
 <!DOCTYPE html>
 <html lang="es">
-<head>
+<head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'styles/post_detail.css' %}">
     <title>Social Network</title>
 </head>
-
 <body>
 <h1>Inicio</h1>
 <section class='main'>
@@ -29,50 +28,15 @@
                         <div class='comment-post'>
                             <p>{{i.text_content}}</p>
                         </div>
-                    
                     </div>
                     </div>
                 </div>
             </div>
             </a>
-            <div class = 'like'>
-                {{i.likes.all|length}}
-            <form action = "{% url 'likes' i.id %}" method = "POST" class = "like-form">
-                {% csrf_token %}
-                {% if is_like %}
-                <input type="hidden" name="next" value="{{ request.path }}">
-                <button class = 'like-button' type='submit'>
-                    <i class="fa-solid fa-heart"></i>       
-                </button>
-                {% else %}
-                <input type="hidden" name="next" value="{{ request.path }}"> 
-                <button class = 'like-button' type='submit'>
-                    <i class="fa-regular fa-heart"></i>
-                </button> 
-                {% endif %}
-            </form>
+            
         {% endfor %}
     </div>
 </section>
-<script>
-    $(document).ready(function () {
-        $('.like-form').submit(function (e) {
-            e.preventDefault(); // Evita que el formulario se envíe normalmente
-            var $form = $(this); // Almacenamos una referencia al formulario actual
-            $.ajax({
-                type: 'POST',
-                url: $form.attr('action'),
-                data: $form.serialize()
-            }).done(function () {
-
-                location.reload();
-
-            }).fail(function () {
-                
-            });
-        });
-    });
-</script>
 </body> 
 </html>
 {% endblock %}

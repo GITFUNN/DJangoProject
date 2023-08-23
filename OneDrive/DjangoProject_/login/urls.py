@@ -9,8 +9,9 @@ urlpatterns = [
     path('main/', views.main_page, name='main'),
     path('create/', views.create_publication, name='create_publication'),
     #path('posts/', views.iterate_posts, name='posts'),
-    path('<int:post_id>/', views.comments_page, name='comments'),
+    path('<int:post_id>', views.comments_page, name='comments'),
     path('home/', views.publications_, name='posts_'),
-    path('home/<int:publication_id>/like', views.likes_publication, name = 'likes')
+    path('comments/<int:publication_id>/', views.likes_publication, name = 'likes'),
+    path('/comments/<int:comment_id>/', views.likes_comments, name = 'comments_likes'),
 
 ]   

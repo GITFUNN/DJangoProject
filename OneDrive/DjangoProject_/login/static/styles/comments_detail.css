@@ -220,3 +220,7 @@ word-wrap: break-word;
     color: grey;
     margin-left: 1vh;
 }
+.messages{
+    color: white;
+    font-size: 100px;
+}

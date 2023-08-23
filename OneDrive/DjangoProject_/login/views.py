@@ -8,8 +8,8 @@ from .models import Publication, Comment
 from django import forms
 from .forms import PublicationForm, CommentForm
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse
-
+from django.urls import reverse 
+from django.contrib import messages
 # Create your views here.
 
 
@@ -127,11 +127,11 @@ def publications_(request):
     publications = Publication.objects.all()
 
     return render (request, 'posts.html', {'publications': publications}) 
-
 @login_required
+
 def comments_page (request, post_id):
     publication = Publication.objects.get(id = post_id)
-    comment = publication.comments.filter(active = True)
+    comment = publication.comments.filter(active = True).order_by('-created_on') 
     form = CommentForm()
 
     if request.method == 'POST': 
@@ -140,19 +140,27 @@ def comments_page (request, post_id):
                 new_form = form.save(commit= False)
                 new_form.publication = publication
                 new_form.comment_author = request.user
-                new_form.save()
+                try:
+                    new_form.save()  # Intenta guardar el formulario
+                    print("Guardado correctamente")
+                    messages.error(request, form.errors)
+                except Exception as e:
+                    messages.error(request, form.errors)
+                    print("Error al guardar el formulario:", str(e))
                 return redirect(reverse('comments', args=[post_id]))
+                        
+                    
     else:
-       
-    
-        form = CommentForm
-
+        messages.error(request, form.errors)
+        form = CommentForm()
+    comment_url = (reverse('comments', args=[post_id]))
     return render (request, 'comments.html', {
         'publication': publication,
         'comments': comment,
-        'form': form,                                     
+        'form': form,
+        'comment_url': comment_url,  
+                                           
         })
-
 @login_required  
 def likes_publication(request, publication_id):
     publication = Publication.objects.get(id = publication_id)
@@ -165,5 +173,21 @@ def likes_publication(request, publication_id):
        publication.likes.add(request.user)
     if is_like:
         publication.likes.remove(request.user)
+    next = request.POST.get('next', '/')
+    return HttpResponseRedirect(next)
+
+
+
+def likes_comments(request, comment_id):
+    comment_ = Comment.objects.get(id = comment_id)
+    is_like = False
+    for like_ in comment_.likes_C.all():
+        if like_ == request.user:
+            is_like = True
+            break
+    if not is_like:
+        comment_.likes_C.add(request.user)
+    if is_like:
+        comment_.likes_C.remove(request.user)
     next = request.POST.get('next', '/')
     return HttpResponseRedirect(next)

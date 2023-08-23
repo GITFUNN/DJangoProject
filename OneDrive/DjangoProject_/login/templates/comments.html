@@ -33,6 +33,23 @@
                             <p>{{publication.text_content}}</p>
                         </div>
                     </div>
+                    <div class = 'like-button-container'>
+                        {{publication.likes.all|length}}
+                        <form action="{% url 'likes' publication.id %}" method="POST" class="like-form">
+                        {% csrf_token %}
+                        {% if is_like %}
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <button class = 'like-button' type='submit'>
+                            <i class="fa-solid fa-heart"></i>       
+                        </button>
+                        {% else %}
+                        <input type="hidden" name="next" value="{{ request.path }}"> 
+                        <button class = 'like-button' type='submit'>
+                            <i class="fa-regular fa-heart"></i>
+                        </button> 
+                        {% endif %}
+                        </form>
+                        </div>
                         <div class = 'form-comment-box'>
                             <div class='comment-user-image'>
                                 <img src="{% static 'usuario.png' %}">   
@@ -69,6 +86,23 @@
                 <div class = 'comment'>
                     <p>{{i.comment}}</p>
                 </div>
+                <div class = 'like'>
+                    {{i.likes_C.all|length}}
+                    <form action = "{% url 'comments_likes' i.id %}" method = "POST" class = "like-form2">
+                            {% csrf_token %}
+                        {% if is_like %}
+                            <input type="hidden" name="next" value="{{ comment_url }}">
+                            <button class = 'like-button' type='submit'>
+                                <i class="fa-solid fa-heart"></i>       
+                            </button>
+                        {% else %}
+                            <input type="hidden" name="next" value="{{ comment_url }}"> 
+                            <button class = 'like-button' type='submit'>
+                                <i class="fa-regular fa-heart"></i>
+                            </button> 
+                        {% endif %}
+                    </form>
+                </div>
             </div>
 
         </div>
@@ -77,6 +111,44 @@
    
     </section>
 </div>
+<script>
+    $(document).ready(function () {
+        $('.like-form').submit(function (e) {
+            e.preventDefault();
+            var $form = $(this);
+            $.ajax({
+                type: 'POST',
+                url: $form.attr('action'),
+                data: $form.serialize()
+            }).done(function () {
+                location.reload();
+            }).fail(function () {
+                // Maneja errores si es necesario
+            });
+        });
+    });
+    $(document).ready(function () {
+        $('.like-form2').submit(function (e) {
+            e.preventDefault();
+            var $form = $(this);
+            $.ajax({
+                type: 'POST',
+                url: $form.attr('action'),
+                data: $form.serialize()
+            }).done(function () {
+                location.reload();
+            }).fail(function () {
+                // Maneja errores si es necesario
+            });
+        });
+    });
+
+</script>
+<ul class="messages">
+    {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
 </body>
 </html>
 {% endblock  %}
