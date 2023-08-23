@@ -10,6 +10,7 @@ from .forms import PublicationForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse 
 from django.contrib import messages
+from django.utils import timezone
 # Create your views here.
 
 
@@ -99,36 +100,12 @@ def create_publication(request):
 
                                             
 
-            
-"""def iterate_posts(request):
-    #Obtain the objets por the Publication class.
-    publications = Publication.objects.all()
-    
-    #Create lists to save the publiactions objets
-    text_content_list = []
-    authors_list  = []
-    ids = []
-
-    #Iterate through the columns of the column text_content
-    for i in publications:
-        text_content_list.append(i.text_content)
-        authors_list.append(i.author)
-    
-    authors_content = zip(text_content_list, authors_list)
-
-    
-    return render (request, 'show_posts.html', {
-        'authors_content': authors_content,
-        
-    })"""
-
 
 def publications_(request):
     publications = Publication.objects.all()
 
     return render (request, 'posts.html', {'publications': publications}) 
 @login_required
-
 def comments_page (request, post_id):
     publication = Publication.objects.get(id = post_id)
     comment = publication.comments.filter(active = True).order_by('-created_on') 
@@ -140,26 +117,30 @@ def comments_page (request, post_id):
                 new_form = form.save(commit= False)
                 new_form.publication = publication
                 new_form.comment_author = request.user
+                new_form.created_on = timezone.now()
                 try:
-                    new_form.save()  # Intenta guardar el formulario
+                    new_form.save()
+                    new_form.active = True  # Intenta guardar el formulario
+                    comment = publication.comments.filter(active=True).order_by('-created_on')
                     print("Guardado correctamente")
+                    print(comment)
                     messages.error(request, form.errors)
                 except Exception as e:
                     messages.error(request, form.errors)
                     print("Error al guardar el formulario:", str(e))
                 return redirect(reverse('comments', args=[post_id]))
-                        
                     
-    else:
-        messages.error(request, form.errors)
-        form = CommentForm()
+        else: 
+            messages.error(request, "error al guardar el formulario")
+            
+    print(comment)
+    form = CommentForm()
     comment_url = (reverse('comments', args=[post_id]))
     return render (request, 'comments.html', {
         'publication': publication,
         'comments': comment,
         'form': form,
-        'comment_url': comment_url,  
-                                           
+        'comment_url': comment_url,                                  
         })
 @login_required  
 def likes_publication(request, publication_id):

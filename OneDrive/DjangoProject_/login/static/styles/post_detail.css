@@ -27,6 +27,7 @@ color: white;
 .full-boxer{
 display: flex;
 flex-direction: column;
+
 }
 
 .comment-box{
@@ -38,6 +39,7 @@ padding: 20px;
 cursor: pointer;
 box-shadow: 0 0 1.2px #bdbdbd;
 transition: 0.1s;
+
 }
 
 
@@ -52,7 +54,7 @@ transition: 0.1s;
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    overflow: visible;
+    overflow: hidden;
     margin-right: 10px;
     display: block;
 
@@ -85,8 +87,3 @@ transition: 0.1s;
     color: grey;
 }
 
-.like-button-container {
-    display: flex;
-    justify-content: flex-end;
-    
-}

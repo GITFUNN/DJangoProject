@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div class = 'like-button-container'>
-                        {{publication.likes.all|length}}
+    
                         <form action="{% url 'likes' publication.id %}" method="POST" class="like-form">
                         {% csrf_token %}
                         {% if is_like %}
@@ -42,11 +42,13 @@
                         <button class = 'like-button' type='submit'>
                             <i class="fa-solid fa-heart"></i>       
                         </button>
+                        {{publication.likes.all|length}}
                         {% else %}
                         <input type="hidden" name="next" value="{{ request.path }}"> 
                         <button class = 'like-button' type='submit'>
                             <i class="fa-regular fa-heart"></i>
                         </button> 
+                        {{publication.likes.all|length}}
                         {% endif %}
                         </form>
                         </div>
@@ -83,11 +85,10 @@
                         <p class = 'date_1'>{{i.formatted_created_on}}</p>
                         </div>
                     </div>
-                <div class = 'comment'>
+                <div class = 'comment_'>
                     <p>{{i.comment}}</p>
                 </div>
                 <div class = 'like'>
-                    {{i.likes_C.all|length}}
                     <form action = "{% url 'comments_likes' i.id %}" method = "POST" class = "like-form2">
                             {% csrf_token %}
                         {% if is_like %}
@@ -95,11 +96,13 @@
                             <button class = 'like-button' type='submit'>
                                 <i class="fa-solid fa-heart"></i>       
                             </button>
+                            {{i.likes_C.all|length}}
                         {% else %}
                             <input type="hidden" name="next" value="{{ comment_url }}"> 
                             <button class = 'like-button' type='submit'>
                                 <i class="fa-regular fa-heart"></i>
                             </button> 
+                            {{i.likes_C.all|length}}
                         {% endif %}
                     </form>
                 </div>
