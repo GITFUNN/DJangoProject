@@ -1,4 +1,4 @@
-{% extends 'base.html' %} <!-- inherits from base  --> 
+{% extends 'nav.html' %} <!-- inherits from base  --> 
 {% load static %}
 {% block content%}
 <!DOCTYPE html>
@@ -6,11 +6,15 @@
 <head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="{% static 'styles/post_detail.css' %}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=PT+Sans&family=Roboto:ital@1&display=swap" rel="stylesheet">
     <title>Social Network</title>
 </head>
 <body>
-<h1>Inicio</h1>
+    <a href='/home'><h1><span>Start</span></h1></a>
 <section class='main'>
     <div class='full-boxer'>
         {% for i in publications %}
@@ -26,14 +30,12 @@
                             <p class = 'date'>{{i.formatted_created_on_}}</p>
                         </div>
                         <div class='comment-post'>
-                            <p>{{i.text_content|truncatechars:78}}</p>
+                            <p>{{i.text_content|truncatechars:70}}</p>
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>
-            </a>
-            
+        </a>     
         {% endfor %}
     </div>
 </section>

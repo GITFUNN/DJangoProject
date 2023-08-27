@@ -1,5 +1,7 @@
 from django.urls import path, include
 from login import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.publications_, name = 'home'),
@@ -13,5 +15,9 @@ urlpatterns = [
     path('home/', views.publications_, name='posts_'),
     path('comments/<int:publication_id>/', views.likes_publication, name = 'likes'),
     path('/comments/<int:comment_id>/', views.likes_comments, name = 'comments_likes'),
+    path('nav/', views.nav, name = 'nav'),
+    path('profile/', views.profile, name = 'profile'),
 
 ]   
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

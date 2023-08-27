@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="{% static '/styles/base_styles.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=PT+Sans&family=Roboto:ital@1&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       
       
@@ -20,24 +20,36 @@
     {% if user.is_authenticated %}
         <nav class = 'nav-base'>
             <ul>
-                
-                
                 <li class = 'main-button'>
-                    <div class'main-image'>
+                    <a href="/home" class = 'home'>
+                    <div class = 'main-icon'>
                         <i class="fa-solid fa-house"></i>
                     </div>
-                    <a href="/home"><strong>Inicio</strong></a>
+                   <strong>Inicio</strong>
+                </a>
                 </li>
-                    <li class = 'logout-button'>
-                        <div class'logout-image'><div>
-                     
+                <li class='profile-button'>
+                    <a href="/profile/" class='profile__'>
+                        <div class='profile-icon'>
+                            <i class="fa-regular fa-user"></i>
+                        </div>
+                        <strong>Profile</strong>
+                    </a>
+                </li>
+
+
+
+                <li class='logout-button'>
+                    <a href="/logout/" class='logout'>
+                        <div class='logout-icon'>
                             <i class="fa-solid fa-right-from-bracket"></i>
-                       
-                        <a href="/logout/"><strong>Logout</strong></a>
-                    </li>
-                    <li class ='post-button_'>
-                        <a href="/create/"><strong>Post</strong></a>
-                    </li>
+                        </div>
+                        <strong>Logout</strong>
+                    </a>
+                </li>
+                    <a href = "/create/" class = 'create'><li class ='post-button_'></li>   
+                    post</strong></a>
+                
             </ul>
         </nav>
         {% endif %}

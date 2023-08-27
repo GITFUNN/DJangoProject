@@ -1,6 +1,9 @@
-from .models import Publication
+
 from django import forms
-from .models import Comment
+from .models import Comment, Publication, Profile_image
+from django.forms import ImageField, FileInput
+from django.forms.widgets import ClearableFileInput
+
 class PublicationForm(forms.ModelForm): # Create a new CLASS that inherits 
     class Meta:
          model = Publication # Assign the publication class to this model
@@ -15,4 +18,27 @@ class CommentForm(forms.ModelForm): # Create a new CLASS that inherits from djan
      def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['comment'].widget.attrs.update({'autocomplete': 'off'})
-     
+
+
+
+class CustomFileInput(forms.FileInput):
+    input_text = ("")
+    clear_checkbox_label = None
+    template_name = 'custom_file_input.html'
+
+
+
+class Profile_imageForm(forms.ModelForm):
+    class Meta:
+        model = Profile_image
+        fields = ['image']
+        widgets = {
+            'image': CustomFileInput(attrs={'placeholder': ''}),
+        }
+
+
+
+
+
+
+

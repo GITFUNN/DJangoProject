@@ -1,0 +1,230 @@
+* body{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Montserrat', sans-serif;
+text-decoration: none;
+}
+
+.user-boxer{
+    box-shadow: 0 0 1.2px #bdbdbd;
+}
+.user-image{
+    text-align: center;
+}
+
+
+.user-image img{
+    width: 200px;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    flex-direction: column;
+}
+
+#id_image label{
+display: none;
+}
+.form_ a {
+    display: none;
+}
+.custom-file-input ~ .clearable-file-input {
+    display: none  !important;
+}
+.custom-file-input ~ .clearable-file-input ~ .change-related {
+    display: none;
+}
+.form_ #image-clear_id{
+    display: none;
+}
+label[for="id_image"] {
+    content: "";
+    display: none;
+}
+.clearable-file-input .clearable-file-input__clear {
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+.form-image{
+    margin-left: 400px;
+    color: white;
+}
+
+section {
+    height: 100%;
+}
+.profile-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: white;
+}
+
+
+
+.full-boxer{
+    margin-top: 7.1%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.content-box{
+    background-color: black;
+    min-height: 100px;
+    height: auto;
+    width: 600px;
+    padding: 20px;
+    cursor: pointer;
+    box-shadow: 0 0 1.2px #bdbdbd;
+    z-index: 0.8;
+    }
+
+.user_{
+display: flex;
+align-items: center;
+}
+
+.mini-user-image img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+    display: block; 
+}
+.link-comments:hover *{
+    background-color: #080808;
+}
+
+.name-author{
+    margin-top: -25px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+    justify-content: space-between;
+}
+
+.text-c {
+    margin-left:48px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    margin-top: 4vh;
+
+}
+.date{
+    margin-left: 1vw;
+    color: grey;
+}
+
+.form_ input{
+    padding: 15px;
+}
+.form_ inputs[type="submit"]{
+    display: none;
+}
+@media (max-width: 768px) {
+    .modal-contenido {
+        max-width: 90%; /* Cambia el ancho máximo para pantallas pequeñas */
+    }
+}
+
+.form_ *{
+    background-color: rgba(36, 35, 35, 0.95);
+
+}
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+   
+}
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    box-shadow: 0 0 1.2px #bdbdbd;
+}
+.modal *{
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.close-modal {
+    background-color: rgba(36, 35, 35, 0.95);   
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+}
+ #show-form{
+    cursor: pointer;
+    border: none;
+    width: 100px;
+    padding: 10px;
+    background-color: rgb(229, 12, 23);
+    color:white;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+.file-input-text{
+    display: none;
+}
+
+input[type="file"]{
+    color: transparent;
+}
+input[type="file"]::-webkit-file-upload-button {
+    background-color: rgba(53, 51, 51, 0.95);
+    position: relative;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    border: none;
+    color:rgb(196, 188, 188);
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1;
+    margin: auto;
+}
+.submit-button{
+    cursor: pointer;
+    z-index: 1;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(53, 51, 51, 0.95);
+ }
+ .form_{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+ }

@@ -1,8 +1,7 @@
 
 body {
- font-family: 'PT Sans', sans-serif;
- font-family: 'Roboto', sans-serif;
-    background-color: black;;
+    font-family: 'Montserrat', sans-serif;
+    background-color: black;
 }
 
 
@@ -17,50 +16,121 @@ ul{
 list-style: none;
 }
 .nav-base {
-display: flex;
-flex-direction: column;
-justify-content: column;
-top: 150px;
-position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    top: 150px;
+    position: fixed;
+    margin-left: 13vw;
 }
 
 
 
-.main-button{
-position: relative;
-display: flex;
-flex-direction: row;
-padding:30px;
-font-size: 3vh;
-}
 
 
-.main-button i {
-   margin-right:15px;
-   margin-bottom: 5px;
-}
-
-
-.logout-button{
-position: relative;
-display: flex;
-flex-direction: row;
-padding:30px;
-font-size: 3vh;
-
-}
-
-.logout-button i {
-    margin-right:10px;
-
-}
-.post-button_{
-
+.home{
     position: relative;
     display: flex;
     flex-direction: row;
-    padding:30px;
+    padding:13px;
     font-size: 3vh;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 30px;
+    margin-bottom: 15px;
+    transition: 0.2s;
+    margin-right: 10px;
+
 
 }
 
+.home:hover{
+    background-color: rgb(20, 20, 20);
+}
+.main-icon{
+    margin-right: 25px;
+}
+.profile__{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    padding:13px;
+    font-size: 3vh;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 30px;
+    margin-bottom: 15px;
+    transition: 0.2s;
+    margin-right: 10px;
+
+
+}
+
+
+.profile__:hover{
+
+    background-color: rgb(20, 20, 20);
+
+
+}
+
+.profile-icon{
+
+    margin-right: 25px;
+
+}
+
+
+
+
+.logout{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    padding:13px;
+    font-size: 3vh;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 30px;
+    margin-bottom: 15px;
+    transition: 0.2s;
+    margin-right: 10px;
+
+
+}
+.logout:hover{
+background-color: rgb(20, 20, 20);
+}
+
+.logout-icon{
+margin-right: 20px;
+}
+
+.create {
+
+    justify-content: center;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    padding:13px;
+    font-size: 3vh;
+    background-color: #1DA1F2;
+    font-weight: bold;
+    border-radius: 30px;
+    align-items: center;
+    margin-top: 10px;
+    cursor: pointer;
+    width: 150px;
+    transition: 0.2s;
+}
+
+.create:hover{
+
+    background-color: #1992de;   
+}

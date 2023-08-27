@@ -2,18 +2,36 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'PT Sans', sans-serif;
-    font-family: 'Roboto', sans-serif;
-    height: 100%;
+    font-family: 'Montserrat', sans-serif;
     background-color: black;
-    text-decoration: none !important;
+    text-decoration: none;
     
     }
 h1 {
+position: fixed;
 display: flex;
+transform: translate(-50%, -50%);
 justify-content: center;
 align-items: center;
+top: 6%;
+left: 50%;
+background-color: rgba(0, 0, 0, 0.95);
+padding-bottom: 3%;
+padding-left: 18.52%;
+padding-right: 18.52%;
+box-shadow: 0 0 1.2px #bdbdbd;
+z-index: 2;
+cursor: pointer;
 
+}
+h1 span{
+    background-color: transparent;
+    margin-top: 50% ;
+    position: relative;
+    
+}
+section {
+    height: 100% !important;
 }
 .main{
 display: flex;
@@ -21,12 +39,14 @@ flex-direction: column;
 align-items: center;
 justify-content: center;
 width: 100%;
-height: 100%;
+height: 100% !important;
 color: white;
 }
 .full-boxer{
+margin-top: 7.1%;
 display: flex;
 flex-direction: column;
+height: 100%;
 
 }
 
@@ -38,18 +58,18 @@ width: 600px;
 padding: 20px;
 cursor: pointer;
 box-shadow: 0 0 1.2px #bdbdbd;
-transition: 0.1s;
+z-index: 1;
 
 }
-
-
-.link-comments:hover .comment-box{
-    background-color: #080808;
+.link-comments *{
+    transition: 0.18s;
 }
+
 .profile{
     display: flex;
     align-items: center;
 }
+
 .profile-image img{
     width: 40px;
     height: 40px;
@@ -57,9 +77,12 @@ transition: 0.1s;
     overflow: hidden;
     margin-right: 10px;
     display: block;
+   
 
 }
-
+.link-comments:hover *{
+    background-color: #080808;
+}
 
 .name{
     margin-top: -25px;
@@ -68,7 +91,7 @@ transition: 0.1s;
     flex-direction: row;
     position: relative;
     justify-content: space-between;
-   
+    
 }
 
 .comment-post {
@@ -79,11 +102,12 @@ transition: 0.1s;
     position: absolute;
     margin-top: 4vh;
 
-    
+  
 }
+
 
 .date {
     margin-left: 1vw;
     color: grey;
+ 
 }
-

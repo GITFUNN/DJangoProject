@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{% static 'styles/comments_detail.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Roboto:ital@1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=PT+Sans&family=Roboto:ital@1&display=swap" rel="stylesheet">
     <title>Social Network</title>
 </head>
 <body>
@@ -91,9 +91,9 @@
                 <div class = 'like'>
                     <form action = "{% url 'comments_likes' i.id %}" method = "POST" class = "like-form2">
                             {% csrf_token %}
-                        {% if is_like %}
+                            {% if is_like %}
                             <input type="hidden" name="next" value="{{ comment_url }}">
-                            <button class = 'like-button' type='submit'>
+                            <button class = 'like-button-liked' type='submit'>
                                 <i class="fa-solid fa-heart"></i>       
                             </button>
                             {{i.likes_C.all|length}}
@@ -145,7 +145,6 @@
             });
         });
     });
-
 </script>
 <ul class="messages">
     {% for message in messages %}

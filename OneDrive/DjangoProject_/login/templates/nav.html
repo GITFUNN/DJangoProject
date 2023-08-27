@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<meta charset="UTF-8">
+<html lang="es">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/styles/nav.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=PT+Sans&family=Roboto:ital@1&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d5b54c4c9d.js" crossorigin="anonymous"></script>
+    <title>Social Network</title>
+</head>
+<body>
+<div class = 'wrapper'>
+    <div class = 'side-bar'>
+        <ul>
+            <a href='/home'><li><i class="fa-solid fa-house-chimney-window"></i>Start</li></a>
+            <a href='/profile/'><li><i class="fa-regular fa-user"></i>Profile</li></a>
+            <a href='/logout/'><li><i class="fa-solid fa-arrow-right-from-bracket"></i>Sign out</li></a>
+            <a href='/options/'><li><i class="fa-solid fa-ellipsis"></i>Options</li></a>
+            <a href='/create/' class = "post_"><li class = "post__">Post</li></a>
+
+        </ul>
+    </div>
+    <div class='main_content'>
+        <div class='header'>
+            <div class='info'>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% block content %}
+{% endblock %}
+</body>
+</html>

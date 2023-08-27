@@ -4,14 +4,17 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
-from .models import Publication, Comment
+from .models import Publication, Comment, Profile_image
 from django import forms
-from .forms import PublicationForm, CommentForm
+from .forms import PublicationForm, CommentForm, Profile_imageForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse 
 from django.contrib import messages
 from django.utils import timezone
 # Create your views here.
+
+def nav (request):
+    return render(request, 'nav.html')
 
 
 def main_page(request):
@@ -86,7 +89,8 @@ def create_publication(request):
             try:      
                 publication = form.save(commit = False) #the publication in publication variable
                 publication.author = request.user # save the author of the publication like request.user
-                publication.save_author() # save the publication using the save_author method from Publiaction Class. it have not parameters then the default parameter is the authenticated user.
+                publication.save_author()
+                return redirect('profile')  # redirect to a get page
             except IntegrityError:
                 return render(request, 'create_publication.html', {
                     'form': PublicationForm()
@@ -172,3 +176,41 @@ def likes_comments(request, comment_id):
         comment_.likes_C.remove(request.user)
     next = request.POST.get('next', '/')
     return HttpResponseRedirect(next)
+        
+@login_required
+def profile(request):
+    user = request.user
+    publications = Publication.objects.filter(author=user)
+    num_likes = user.likes.all().count()
+    img = get_object_or_404(Profile_image, user=user)
+    try:
+        img = Profile_image.objects.get(user=user)
+    except Profile_image.DoesNotExist:
+        img = None
+
+    if request.method == 'POST':
+        form = Profile_imageForm(request.POST, request.FILES, instance=img)
+        if form.is_valid():
+            profile_image = form.save(commit=False) 
+            profile_image.user = user
+            profile_image.save()
+            form = Profile_imageForm(instance=img)
+                    
+            print("Image saved successfully.")
+    else:
+        form = Profile_imageForm(instance=img)
+        print("Form is not valid:", form.errors)
+    print("Image URL:", img.image.url if img.image else "No image")
+
+    return render(request, 'profile.html', {
+        'img': img,
+        'form': form,
+        'user': user,
+        'publications': publications,
+        'num_likes': num_likes,
+    })
+
+
+
+
+

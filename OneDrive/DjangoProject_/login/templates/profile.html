@@ -1,0 +1,91 @@
+{% extends 'nav.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{user}}</title>
+    <link rel="stylesheet" href="{% static 'styles/profile_style.css' %}">
+       
+   
+</head>
+<body>
+    
+        <div id="my-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal" id="close-modal" onclick="closeModalBtn">&times;</span>
+                <form method = 'POST' action="" enctype = "multipart/form-data" class ="form_">
+                    {% csrf_token %}
+                    {{form.image}}
+                    <input type="submit" name="submit_comment" value ='Accept' class = 'submit-button'>
+                    </form>
+            </div>
+        </div>
+            <div class="form-image">
+                
+            </div>
+            <div class = 'user-boxer'>
+                <h1>{{user}}</h1>
+                <div class= 'user-image'>
+                    {% if img and img.image %}
+                    <img src = "{{img.image.url}}">
+                    <button id="show-form" onclick="showFormBtn()">change</button>
+                    {% else %}
+                    <img src="{% static 'NoUser.jpg' %}">
+                    {% endif %}
+                </div>
+            </div>
+    <section class="profile-content">
+            <div class ='full-boxer'>
+                {% for i in publications %}
+                    <a href="{% url 'comments' i.id %}" class = "link-comments">
+                        <div class ="content-box">
+                            <div class ='box-top'>
+                                <div class='user_'>
+                                    <div class='mini-user-image'>
+                                        <img src = "{{img.image.url}}">
+                                    </div>
+                                    <div class='name-author'>
+                                        <strong>{{i.author}}</strong>
+                                        <p class = 'date'>{{i.formatted_created_on_}}</p>
+                                    </div>
+                                    <div class = "text-c">
+                                        <p>{{i.text_content|truncatechars:70}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a> 
+                {% endfor %}
+            </div>
+    </section>
+    <script>
+        // Obtener referencia al botón y al modal
+        var showFormBtn = document.getElementById('show-form');
+        var modal = document.getElementById('my-modal');
+        var closeModalBtn = document.querySelector('.close-modal');
+
+        modal.style.display = 'none';
+
+
+        // Agregar un evento de clic al botón para mostrar el modal
+        showFormBtn.addEventListener('click', function () {
+            modal.style.display = 'block';
+        });
+
+        // Agregar un evento de clic al botón para cerrar el modal
+        closeModalBtn.addEventListener('click', function () {
+            modal.style.display = 'none';
+        });
+
+        // Opcional: Agregar un evento para cerrar el modal si se hace clic fuera de él
+        window.addEventListener('click', function (event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
+{% endblock %}

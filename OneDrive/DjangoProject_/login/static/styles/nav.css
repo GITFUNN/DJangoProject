@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=PT+Sans&family=Roboto:ital@1&display=swap');
+
+    
+.wrapper, .wrapper *{
+
+box-sizing: border-box;
+}  
+
+*{
+    margin: 0;
+    padding: 0;
+    color: white; 
+    text-decoration: none; 
+    list-style: none;
+    font-family: 'Montserrat', sans-serif;
+    background-color: black;
+
+}
+* body .section {
+    color: white;
+    }
+    
+
+
+.wrapper{
+
+display: flex;
+position: relative;
+}
+
+.wrapper .side-bar{
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    padding: 30px 0;
+}
+.wrapper .side-bar ul a li {
+padding: 15px;
+border-radius: 30px;
+color: white;
+font-size: 20px;
+margin-bottom: 10px;
+}
+.wrapper .side-bar ul li a{
+    color: white;
+    display: block;
+    padding-left: 10px;
+
+}
+.wrapper .side-bar ul a li .fa-solid{
+    width: 55px;
+    color: white;
+
+}
+.wrapper .side-bar ul a li .fa-regular{
+    width: 55px;
+    color: white;
+
+
+}
+.wrapper .side-bar ul a :hover{
+    background-color:  rgb(50, 46, 46); 
+
+}
+.wrapper .side-bar ul a:hover .fa-regular {
+    background-color:  rgb(50, 46, 46);    
+}
+.wrapper .side-bar ul a:hover .fa-solid {
+    background-color: rgb(50, 46, 46);    
+}
+.wrapper .side-bar ul a li:not(:nth-child(5)){
+    display: inline-block;
+
+
+}
+.wrapper .side-bar ul .post_{
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
+
+.wrapper .side-bar ul a .post__{
+    width: 100%;
+    background-color: rgb(255, 6, 20);
+    font-weight: bold;
+    transition: 0.2s;
+}
+.wrapper .side-bar ul a .post__:hover{
+    background-color: rgb(229, 12, 23);
+    
+}
+
