@@ -26,11 +26,20 @@
                 
             </div>
             <div class = 'user-boxer'>
-                <h1>{{user}}</h1>
+                <h1 title= "User" class = "name-user-auth">{{user}}</h1>
                 <div class= 'user-image'>
+                    <div class = "num-likes">
+                        @{{user}}
+                        <i class="fa-solid fa-comment" title = "Comments"></i>
+                        {{comment_count}}
+                        <i class="fa-solid fa-heart" title = "Likes"></i>
+                        {{num_likes}}
+                        <i class="fas fa-file-alt" title = "Posts"></i>
+                        {{p_count}}
+                    </div>
                     {% if img and img.image %}
                     <img src = "{{img.image.url}}">
-                    <button id="show-form" onclick="showFormBtn()">change</button>
+                    <button id="show-form" onclick="showFormBtn()"><i class="fa-solid fa-camera-retro"></i>Change</button>
                     {% else %}
                     <img src="{% static 'NoUser.jpg' %}">
                     {% endif %}
@@ -51,7 +60,7 @@
                                         <p class = 'date'>{{i.formatted_created_on_}}</p>
                                     </div>
                                     <div class = "text-c">
-                                        <p>{{i.text_content|truncatechars:70}}</p>
+                                        <p>{{i.text_content|truncatechars:68}}</p>
                                     </div>
                                 </div>
                             </div>

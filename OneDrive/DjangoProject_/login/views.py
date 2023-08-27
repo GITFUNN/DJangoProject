@@ -180,7 +180,10 @@ def likes_comments(request, comment_id):
 @login_required
 def profile(request):
     user = request.user
+    comments = Comment.objects.filter(comment_author = user)
+    comment_count = comments.count()
     publications = Publication.objects.filter(author=user)
+    p_count = publications.count()
     num_likes = user.likes.all().count()
     img = get_object_or_404(Profile_image, user=user)
     try:
@@ -208,6 +211,8 @@ def profile(request):
         'user': user,
         'publications': publications,
         'num_likes': num_likes,
+        'p_count': p_count,
+        'comment_count': comment_count,
     })
 
 

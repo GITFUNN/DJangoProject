@@ -22,7 +22,6 @@ class CommentForm(forms.ModelForm): # Create a new CLASS that inherits from djan
 
 
 class CustomFileInput(forms.FileInput):
-    input_text = ("")
     clear_checkbox_label = None
     template_name = 'custom_file_input.html'
 
@@ -33,11 +32,17 @@ class Profile_imageForm(forms.ModelForm):
         model = Profile_image
         fields = ['image']
         widgets = {
-            'image': CustomFileInput(attrs={'placeholder': ''}),
+            'image': CustomFileInput(),
         }
 
 
-
+class BackProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile_image
+        fields = ['back_image']
+        widgets = {
+            'back_image': CustomFileInput(),
+        }
 
 
 

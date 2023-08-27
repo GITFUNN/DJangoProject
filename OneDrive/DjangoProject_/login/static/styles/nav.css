@@ -29,6 +29,7 @@ position: relative;
 }
 
 .wrapper .side-bar{
+    box-shadow: 0 0 1.2px #bdbdbd;
     position: fixed;
     width: 200px;
     height: 100%;
@@ -76,7 +77,7 @@ margin-bottom: 10px;
 .wrapper .side-bar ul .post_{
     display: inline-block;
     text-align: center;
-    width: 100%;
+    width: 95%;
 }
 
 

@@ -11,6 +11,7 @@ from datetime import datetime
 class Profile_image(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to= 'login/media/img', blank=True, null=True)
+    back_image = models.ImageField(upload_to= 'login/media/img_back', blank=True, null=True)
     
 class Publication (models.Model):
     text_content = models.TextField(max_length=1000, default = None)
