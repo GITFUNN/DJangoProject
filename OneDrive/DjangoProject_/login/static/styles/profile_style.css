@@ -8,20 +8,21 @@ list-style: none;
 }
 
 .user-boxer{
-    display:  inline-block;
+    display: inline-block;
     box-shadow: 0 0 1.2px #bdbdbd;
     height: 100%;
     width: 100%;
     top: 0%;
     left: 100%;
     padding-bottom: 15px;
+    
+
 }
 
-.name-user-auth{
-    
-}
+
 .user-image{
     text-align: center;
+
 }
 
 
@@ -32,6 +33,7 @@ list-style: none;
     align-items: center;
     border-radius: 50%;
     flex-direction: column;
+   
 }
 
 #id_image label{
@@ -41,7 +43,7 @@ display: none;
     display: none;
 }
 .custom-file-input ~ .clearable-file-input {
-    display: none  !important;
+    display: none;
 }
 .custom-file-input ~ .clearable-file-input ~ .change-related {
     display: none;
@@ -56,11 +58,6 @@ label[for="id_image"] {
 .clearable-file-input .clearable-file-input__clear {
     display: none;
 }
-
-
-
-
-
 
 
 
@@ -81,6 +78,7 @@ section {
     width: 100%;
     height: 100%;
     color: white;
+    background-color: black;
 }
 
 
@@ -151,11 +149,7 @@ align-items: center;
 .form_ inputs[type="submit"]{
     display: none;
 }
-@media (max-width: 768px) {
-    .modal-contenido {
-        max-width: 90%; /* Cambia el ancho máximo para pantallas pequeñas */
-    }
-}
+
 
 .form_ *{
     background-color: rgba(36, 35, 35, 0.95);
@@ -175,6 +169,20 @@ align-items: center;
     overflow: hidden;
     margin: auto;
 }
+.modal-2{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    overflow: hidden;
+    margin: auto;    
+}
 .modal-content {
     border: none;
     background-color: #fff;
@@ -190,10 +198,30 @@ align-items: center;
     overflow: hidden;
    
 }
+.modal-content-2{
+    border: none;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    box-shadow: 0 0 1.2px #bdbdbd;
+    margin: auto;
+    overflow: hidden;
+}
 .modal *{
     border:none;
     background-color: rgba(0, 0, 0, 0.8);
+} 
+.modal-2 *{
+    border:none;
+    background-color: rgba(0, 0, 0, 0.8);
 }
+
+
 .close-modal {
     transition: .2s;
     text-decoration: none;
@@ -211,15 +239,34 @@ align-items: center;
     border-radius: 50%;
     line-height: 15px;
 }
+.close-modal-2{
+    transition: .2s;
+    text-decoration: none;
+    border: none;
+    position: absolute;
+    cursor: pointer;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    top: 3.5%;
+    right: 1.5%;
+    padding: 5px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    line-height: 15px;  
+}
 .close-modal:hover{
+    
+    background-color: rgba(37, 35, 35, 0.95);
+}
+.close-modal-2:hover{
     
     background-color: rgba(37, 35, 35, 0.95);
 }
 
 
-
  #show-form{
-
     transition: 0.2s;
     cursor: pointer;
     border: none;
@@ -342,4 +389,43 @@ input[type="file"]::-ms-browse {
  .num-likes *{
     width: 25px;
  }
- 
+ #show-form2{
+    transition: 0.2s;
+    cursor: pointer;
+    border: none;
+    width: 100px;
+    padding: 10px;
+    background-color: rgb(255, 6, 20);
+    color:white;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+#show-form2 .fa-solid{
+    background-color: transparent;
+}
+#show-form2 *{
+    width: 25px;
+}
+
+#show-form2:hover{
+    background-color: rgb(229, 12, 23);
+}
+.form-2 input{
+    padding: 15px;
+}
+.form-2 inputs[type="submit"]{
+    display: none;
+}
+
+
+.form-2 *{
+    background-color: rgba(36, 35, 35, 0.95);
+}
+
+
+
+
+

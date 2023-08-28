@@ -10,8 +10,19 @@
        
    
 </head>
-<body>
-    
+<body style = "background-image: url('{{back_img.back_image.url}}')">
+    <div id="my-modal-2" class="modal-2">
+        <div class="modal-content-2">
+            <span class="close-modal-2" id="close-modal-2" onclick="closeModalBtn2">&times;</span>
+            <form method = 'POST' action="" enctype = "multipart/form-data" class ="form-2">
+                {% csrf_token %}
+                {{form1.back_image}}
+                <input type="submit" name="submit_comment" value ='Accept' class = 'submit-button'>
+                </form>
+        </div>
+    </div>
+
+
         <div id="my-modal" class="modal">
             <div class="modal-content">
                 <span class="close-modal" id="close-modal" onclick="closeModalBtn">&times;</span>
@@ -25,7 +36,8 @@
             <div class="form-image">
                 
             </div>
-            <div class = 'user-boxer'>
+          
+            <div class = 'user-boxer' id = "user-box">
                 <h1 title= "User" class = "name-user-auth">{{user}}</h1>
                 <div class= 'user-image'>
                     <div class = "num-likes">
@@ -39,7 +51,8 @@
                     </div>
                     {% if img and img.image %}
                     <img src = "{{img.image.url}}">
-                    <button id="show-form" onclick="showFormBtn()"><i class="fa-solid fa-camera-retro"></i>Change</button>
+                    <button id="show-form" onclick="showFormBtn"><i class="fa-solid fa-camera-retro"></i>Change</button>
+                    <button id="show-form2" onclick="showFormBtn2"><i class="fa-solid fa-image"></i>Change</button>
                     {% else %}
                     <img src="{% static 'NoUser.jpg' %}">
                     {% endif %}
@@ -92,6 +105,29 @@
         window.addEventListener('click', function (event) {
             if (event.target === modal) {
                 modal.style.display = 'none';
+            }
+        });
+        var showFormBtn2 = document.getElementById('show-form2');
+        var modal2 = document.getElementById('my-modal-2');
+        var closeModalBtn2 = document.querySelector('.close-modal-2');
+
+        modal2.style.display = 'none';
+
+
+        // Agregar un evento de clic al botón para mostrar el modal
+        showFormBtn2.addEventListener('click', function () {
+            modal2.style.display = 'block';
+        });
+
+        // Agregar un evento de clic al botón para cerrar el modal
+        closeModalBtn2.addEventListener('click', function () {
+            modal2.style.display = 'none';
+        });
+
+        // Opcional: Agregar un evento para cerrar el modal si se hace clic fuera de él
+        window.addEventListener('click', function (event) {
+            if (event.target === modal2) {
+                modal2.style.display = 'none';
             }
         });
     </script>

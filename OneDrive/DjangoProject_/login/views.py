@@ -6,7 +6,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from .models import Publication, Comment, Profile_image
 from django import forms
-from .forms import PublicationForm, CommentForm, Profile_imageForm
+from .forms import PublicationForm, CommentForm, Profile_imageForm, BackProfileForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse 
 from django.contrib import messages
@@ -185,28 +185,41 @@ def profile(request):
     publications = Publication.objects.filter(author=user)
     p_count = publications.count()
     num_likes = user.likes.all().count()
+    back_img = get_object_or_404(Profile_image, user = user)
     img = get_object_or_404(Profile_image, user=user)
     try:
+        back_img = Profile_image.objects.get(user = user)
         img = Profile_image.objects.get(user=user)
     except Profile_image.DoesNotExist:
         img = None
+        back_img = None
 
     if request.method == 'POST':
+        form1 = BackProfileForm(request.POST, request.FILES, instance = back_img)
         form = Profile_imageForm(request.POST, request.FILES, instance=img)
         if form.is_valid():
             profile_image = form.save(commit=False) 
             profile_image.user = user
             profile_image.save()
             form = Profile_imageForm(instance=img)
+            print("Image saved successfully.")
+        if form1.is_valid():
+            back_profile_image = form1.save(commit=False)
+            back_profile_image.user = user
+            back_profile_image.save()
+            form1 = BackProfileForm(instance=back_img)
                     
             print("Image saved successfully.")
     else:
+        form1 = BackProfileForm(instance= back_img)
         form = Profile_imageForm(instance=img)
         print("Form is not valid:", form.errors)
     print("Image URL:", img.image.url if img.image else "No image")
 
     return render(request, 'profile.html', {
+        'back_img': back_img,
         'img': img,
+        'form1': form1,
         'form': form,
         'user': user,
         'publications': publications,

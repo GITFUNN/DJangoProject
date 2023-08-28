@@ -13,7 +13,6 @@ box-sizing: border-box;
     text-decoration: none; 
     list-style: none;
     font-family: 'Montserrat', sans-serif;
-    background-color: black;
 
 }
 * body .section {
@@ -23,12 +22,13 @@ box-sizing: border-box;
 
 
 .wrapper{
-
+z-index: 1;
 display: flex;
 position: relative;
 }
 
 .wrapper .side-bar{
+    background-color: black;
     box-shadow: 0 0 1.2px #bdbdbd;
     position: fixed;
     width: 200px;
