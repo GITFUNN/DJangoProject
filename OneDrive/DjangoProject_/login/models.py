@@ -34,7 +34,7 @@ class Publication (models.Model):
 
 
 class Comment(models.Model):
-    comment = models.CharField(max_length=500, default= None)
+    comment = models.CharField(max_length=1000, default= None)
     comment_author = models.ForeignKey(User, on_delete= models.CASCADE, default = None)
     publication = models.ForeignKey(Publication, on_delete= models.CASCADE, related_name='comments')
     created_on = models.DateTimeField(default=datetime.now)
@@ -42,8 +42,8 @@ class Comment(models.Model):
     likes_C = models.ManyToManyField(User, blank=True, related_name = 'likes_C')
 
 
-    #def formatted_created_on(self):
-        #return self.created_on.strftime("%b. %d")
+    def formatted_created_on(self):
+        return self.created_on.strftime("%b. %d")
 
     def __str__(self):
         return f"Publication made by {self.comment_author.username}"

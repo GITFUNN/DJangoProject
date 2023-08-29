@@ -5,6 +5,34 @@
     font-family: 'Montserrat', sans-serif;
     
     }
+body{
+    background-color: black;
+}
+
+h1 {
+    position: fixed;
+    display: flex;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    align-items: center;
+    top: 7%;
+    left: 50%;
+    backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0.9);
+    padding-bottom: 3%;
+    padding-left: 17.2%;
+    padding-right: 17.2%;
+    box-shadow: 0 0 1.2px #bdbdbd;
+    z-index: 2;
+    cursor: pointer;
+    
+    }
+    h1 span{
+        background-color: transparent;
+        margin-top: 50% ;
+        position: relative;
+        
+    }
 
 .main-section{
     display: flex;
@@ -154,8 +182,6 @@ label[for="id_active"] {
 display: none;
 }
 
-
-
 .main {
 display: flex;
 flex-direction: column;
@@ -169,6 +195,10 @@ width: 100%;
     flex-direction: column;
 
 }
+#full_boxer{
+    margin-top: 7.1%;
+    
+}
 
 .comment-box{
 width: 600px;
@@ -178,15 +208,24 @@ padding: 20px;
 border: none;
 box-shadow: 0 0 1.2px #bdbdbd;
 }
+#comment-box{
+    transition: 0.18s;
+    cursor: pointer;
+}
+#comment-box:hover{
+background-color: #080808;
+}
+
 .profile{
     display: flex;
     align-items: center;
 }
+
 .profile-image img{
     width: 40px;
     height:40px;
     border-radius: 50%;
-    overflow: visible;
+    overflow: hidden;
     margin-right: 10px;
     display: block;
   
@@ -215,18 +254,22 @@ word-wrap: break-word;
 }
 
 .date_1{
-    color: grey;
+    color: rgb(104, 103, 103);
     margin-left: 1vh;
 }
 .messages{
     color: white;
     font-size: 100px;
 }
+
+
 .like-button{
 background: transparent;
 cursor: pointer;
 border: none;
 }
+
+
 .like-button-liked{
 background: transparent;
 color: red;

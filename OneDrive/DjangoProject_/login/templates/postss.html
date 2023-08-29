@@ -1,0 +1,47 @@
+<section class = 'main'>
+    <div class='full-boxer'> 
+        {% for i in publications  %}
+        <div class='comment-box'>
+            <div class='box-top'>
+                <div class='profile'>
+                    <div class='profile-image'>
+                        {% if i.comment_author.profile_image.image %}
+                        <img src="{{i.comment_author.profile_image.image.url}}">
+                        {% else %}
+                        <img src="{% static 'usuario.png' %}">
+                        {% endif %}    
+                    </div>
+                    <div class='name'>
+                    <strong>{{i.comment_author}}</strong>
+                    <p class = 'date_1'>{{i.formatted_created_on}}</p>
+                    </div>
+                </div>
+            <div class = 'comment_'>
+                <p>{{i.comment}}</p>
+            </div>
+            <div class = 'like'>
+                <form action = "{% url 'comments_likes' i.id %}" method = "POST" class = "like-form2">
+                        {% csrf_token %}
+                        {% if is_like %}
+                        <input type="hidden" name="next" value="{{ comment_url }}">
+                        <button class = 'like-button-liked' type='submit'>
+                            <i class="fa-solid fa-heart"></i>       
+                        </button>
+                        {{i.likes_C.all|length}}
+                    {% else %}
+                        <input type="hidden" name="next" value="{{ comment_url }}"> 
+                        <button class = 'like-button' type='submit'>
+                            <i class="fa-regular fa-heart"></i>
+                        </button> 
+                        {{i.likes_C.all|length}}
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+
+    </div>
+        {% endfor %}
+</div>
+
+</section>
+</div>

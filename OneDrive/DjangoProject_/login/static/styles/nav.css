@@ -25,6 +25,7 @@ box-sizing: border-box;
 z-index: 1;
 display: flex;
 position: relative;
+
 }
 
 .wrapper .side-bar{
@@ -41,16 +42,19 @@ border-radius: 30px;
 color: white;
 font-size: 20px;
 margin-bottom: 10px;
+
 }
 .wrapper .side-bar ul li a{
     color: white;
     display: block;
     padding-left: 10px;
+    
 
 }
 .wrapper .side-bar ul a li .fa-solid{
     width: 55px;
     color: white;
+ 
 
 }
 .wrapper .side-bar ul a li .fa-regular{

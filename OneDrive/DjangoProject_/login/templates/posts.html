@@ -1,44 +1,65 @@
-{% extends 'nav.html' %} <!-- inherits from base  --> 
+{% extends 'nav.html' %} 
 {% load static %}
 {% block content%}
 <!DOCTYPE html>
 <html lang="es">
-<head> 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="{% static 'styles/post_detail.css' %}">
-
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=PT+Sans&family=Roboto:ital@1&display=swap" rel="stylesheet">
-    <title>Social Network</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'styles/comments_detail.css' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=PT+Sans&family=Roboto:ital@1&display=swap" rel="stylesheet">
+        <title>Social Network</title>
+    </head>
 <body>
     <a href='/home'><h1><span>Start</span></h1></a>
+<div class ="comment-section">
 <section class='main'>
-    <div class='full-boxer'>
-        {% for i in publications %}
-            <a href="{% url 'comments' i.id %}" class = "link-comments">
-            <div class = 'comment-box'>
-                <div class = 'box-top'>
+    <div class='full-boxer' id = "full_boxer">
+        {% for i in publications %}                
+        <div class = 'comment-box' data-url = "{% url 'comments' i.id %}" id = "comment-box">
+            <div class = 'box-top'>
                     <div class = 'profile'>
                         <div class = 'profile-image'>
+                            {% if i.author.profile_image.image %}
+                            <img src="{{i.author.profile_image.image.url}}">
+                            {% else %}
                             <img src="{% static 'usuario.png' %}">
+                            {% endif %}
                         </div>
                         <div class = 'name'>
                             <strong>{{i.author}}</strong>
-                            <p class = 'date'>{{i.formatted_created_on_}}</p>
-                        </div>
-                        <div class='comment-post'>
-                            <p>{{i.text_content|truncatechars:70}}</p>
+                            <p class = 'date_1'>{{i.formatted_created_on_}}</p>
                         </div>
                     </div>
+                        <div class='comment_' id = "comment_post">
+                            <p>{{i.text_content|truncatechars:130}}</p>
+                        </div>
+                    
                 </div>
-            </div>
-        </a>     
+            </div>     
         {% endfor %}
     </div>
 </section>
-</body> 
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const commentBoxes = document.querySelectorAll(".comment-box");
+    
+      commentBoxes.forEach(function(commentBox) {
+        commentBox.addEventListener("click", function() {
+          const url = commentBox.getAttribute("data-url");  
+          if (url) {
+            window.location.href = url;
+          }
+        });
+      });
+      
+    });
+    
+    </script> 
+</body>
+
 </html>
 {% endblock %}

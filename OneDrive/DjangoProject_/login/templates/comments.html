@@ -1,8 +1,8 @@
-<!-- inherits from base  --> 
-{% extends 'base.html' %}
+
+{% extends 'nav.html' %}
 {% load static %}
 {% block content %}
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -22,7 +22,11 @@
                     <div class='user-comment'>
                     <div class='user'>
                         <div class='user-image'>
-                            <img src="{% static 'usuario01.png' %}">
+                            {% if publication.author.profile_image.image %}
+                            <img src="{{publication.author.profile_image.image.url}}">
+                            {% else %}
+                            <img src="{% static 'usuario.png' %}">
+                            {% endif %}
                         </div>
                         <div class='name-author'>
                             <strong>{{publication.author}}</strong>
@@ -54,7 +58,11 @@
                         </div>
                         <div class = 'form-comment-box'>
                             <div class='comment-user-image'>
-                                <img src="{% static 'usuario.png' %}">   
+                            {% if user.profile_image.image %}
+                            <img src="{{user.profile_image.image.url}}">
+                            {% else %}
+                            <img src="{% static 'usuario.png' %}">
+                            {% endif %}   
                             </div>
                             <form method="POST">
                                 {% csrf_token %} 
@@ -78,7 +86,11 @@
                 <div class='box-top'>
                     <div class='profile'>
                         <div class='profile-image'>
-                            <img src="{% static 'usuario.png' %}">      
+                            {% if i.comment_author.profile_image.image %}
+                            <img src="{{i.comment_author.profile_image.image.url}}">
+                            {% else %}
+                            <img src="{% static 'usuario.png' %}">
+                            {% endif %}    
                         </div>
                         <div class='name'>
                         <strong>{{i.comment_author}}</strong>

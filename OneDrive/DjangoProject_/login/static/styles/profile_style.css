@@ -15,6 +15,7 @@ list-style: none;
     top: 0%;
     left: 100%;
     padding-bottom: 15px;
+    padding-top: 20px;   
     
 
 }
@@ -155,6 +156,21 @@ align-items: center;
     background-color: rgba(36, 35, 35, 0.95);
 
 }
+
+.form-2 input{
+    padding: 15px;
+}
+.form-2 inputs[type="submit"]{
+    display: none;
+}
+
+
+.form-2 *{
+    background-color: rgba(36, 35, 35, 0.95);
+}
+
+
+
 .modal {
     position: fixed;
     top: 0;
@@ -367,9 +383,8 @@ input[type="file"]::-ms-browse {
     cursor: pointer;
     border: none;
     border-radius: 25px;
-    
     position: absolute;
-    margin-left: -50px;
+    margin-left: -100px;
  }
 
  input[type="file"]::-webkit-file-upload-button:hover{
@@ -412,17 +427,6 @@ input[type="file"]::-ms-browse {
 
 #show-form2:hover{
     background-color: rgb(229, 12, 23);
-}
-.form-2 input{
-    padding: 15px;
-}
-.form-2 inputs[type="submit"]{
-    display: none;
-}
-
-
-.form-2 *{
-    background-color: rgba(36, 35, 35, 0.95);
 }
 
 
