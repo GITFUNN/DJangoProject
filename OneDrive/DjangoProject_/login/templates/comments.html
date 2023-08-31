@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=PT+Sans&family=Roboto:ital@1&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Social Network</title>
 </head>
 <body>
@@ -50,7 +51,7 @@
                         {% else %}
                         <input type="hidden" name="next" value="{{ request.path }}"> 
                         <button class = 'like-button' type='submit'>
-                            <i class="fa-regular fa-heart"></i>
+                            <i class="fa-regular fa-heart" title = "Like"></i>
                         </button> 
                         {{publication.likes.all|length}}
                         {% endif %}
@@ -106,13 +107,13 @@
                             {% if is_like %}
                             <input type="hidden" name="next" value="{{ comment_url }}">
                             <button class = 'like-button-liked' type='submit'>
-                                <i class="fa-solid fa-heart"></i>       
+                                <i class="fa-solid fa-heart" title = "Like"></i>       
                             </button>
                             {{i.likes_C.all|length}}
                         {% else %}
                             <input type="hidden" name="next" value="{{ comment_url }}"> 
                             <button class = 'like-button' type='submit'>
-                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-regular fa-heart" title = "Like"></i>
                             </button> 
                             {{i.likes_C.all|length}}
                         {% endif %}

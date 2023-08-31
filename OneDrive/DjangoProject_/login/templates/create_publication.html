@@ -1,6 +1,6 @@
-
+{% extends 'nav.html' %}
 {% load static %}
-
+{% block content %}
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -8,19 +8,54 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="{% static 'styles/createstyle.css' %}">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=PT+Sans&family=Roboto:ital@1&display=swap" rel="stylesheet">
         <title>Social Network</title>
     </head>
-{% block content %}
-<head>
-    <title>Crear Publicación</title>
-    {{ error }} 
-</head>
 <body>
-    <h1>Crear New Post</h1>
-    <form action = '/create/' method='POST'>
-        {% csrf_token %}  
-        <button type="submit">Post</button> 
-    </form>
+
+    <div id="my-modal_" class="modal_">
+        <div class="modal-content_">
+            <span class="close-modal_" id="close-modal_" onclick="closeModalBtn3()">&times;</span>
+            <form method="POST" class="form_post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" name="submit_comment" value="Accept" class="submit-button-post">
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+
+
+<script>
+
+    var showFormBtn3 = document.getElementById('show-form-post');
+    var modal3 = document.getElementById('my-modal_');
+    var closeModalBtn3 = document.querySelector('.close-modal_');
+
+
+
+        //modal3.style.display = 'none';
+        // Agregar un evento de clic al botón para mostrar el modal
+        showFormBtn3.addEventListener('click', function () {
+            modal3.style.display = 'block';
+        });
+
+        // Agregar un evento de clic al botón para cerrar el modal
+        closeModalBtn3.addEventListener('click', function () {
+            modal3.style.display = 'none';
+        });
+
+        // Opcional: Agregar un evento para cerrar el modal si se hace clic fuera de él
+        window.addEventListener('click', function (event) {
+            if (event.target === modal3) {
+                modal3.style.display = 'none';
+            }
+        });
+</script>
 </body>
 {% endblock %}

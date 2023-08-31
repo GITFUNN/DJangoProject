@@ -12,9 +12,25 @@ from django.urls import reverse
 from django.contrib import messages
 from django.utils import timezone
 # Create your views here.
-
-def nav (request):
-    return render(request, 'nav.html')
+#@login_required
+"""def nav (request):
+    #form3 = PublicationForm()                     # if the request is POST then create a instance of the publication whit the request
+    if request.method == 'POST':
+        form3 = PublicationForm(request.POST)
+        print("se renderizó correctamente el form")
+        if form3.is_valid():  # validate if the form data is correct     
+                publication = form3.save(commit = False) #the publication in publication variable
+                publication.author = request.user # save the author of the publication like request.user
+                publication.save_author()
+                return redirect('profile')
+    else:
+        return render(request, 'nav.html', {
+            'form3': PublicationForm,
+            })
+    return render(request,'nav.html', {
+                    'form3': form3,
+                    'error': 'error', 
+                    })"""
 
 
 def main_page(request):
@@ -77,16 +93,11 @@ def signin(request):
             login(request, user)
             return redirect('home')
 
-@login_required
+"""@login_required
 def create_publication(request):
-    if request.method == 'GET':
-        return render(request, 'create_publication.html', {
-            'form': PublicationForm()
-            })                                           # if the request is POST then create a instance of the publication whit the request
-    elif request.method == 'POST':
+    if request.method == 'POST':
         form = PublicationForm(request.POST)
         if form.is_valid():  # validate if the form data is correct
-            try:      
                 publication = form.save(commit = False) #the publication in publication variable
                 publication.author = request.user # save the author of the publication like request.user
                 publication.save_author()
@@ -99,16 +110,34 @@ def create_publication(request):
             return render(request, 'create_publication.html', {
                     'form': PublicationForm(),
                     'error': "Integrity error"
-                    })
-        return redirect('main') # redirect to main page after publication has been saved
+                    })"""
+            
 
                                             
 
-
+@login_required
 def publications_(request):
-    publications = Publication.objects.all()
+    publications = Publication.objects.all().order_by('-created_on')                                                # if the request is POST then create a instance of the publication whit the request
+    if request.method == 'POST':
+        form = PublicationForm(request.POST)
+        if form.is_valid():  # validate if the form data is correct     
+            publication = form.save(commit = False) #the publication in publication variable
+            publication.author = request.user # save the author of the publication like request.user
+            publication.save_author()
+            form = PublicationForm() 
+        
+    else:
+        form = PublicationForm()
 
-    return render (request, 'posts.html', {'publications': publications}) 
+    #publications = Publication.objects.all().order_by('-created_on')
+    return render (request, 'posts.html', {
+        'publications': publications,
+        'form': PublicationForm
+        
+        })
+
+
+
 @login_required
 def comments_page (request, post_id):
     publication = Publication.objects.get(id = post_id)

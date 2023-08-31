@@ -14,6 +14,9 @@
     </head>
 <body>
     <a href='/home'><h1><span>Start</span></h1></a>
+
+
+
 <div class ="comment-section">
 <section class='main'>
     <div class='full-boxer' id = "full_boxer">
@@ -43,20 +46,65 @@
     </div>
 </section>
 </div>
+<div id="my-modal_" class="modal_">
+    <div class="modal-content_">
+        <div class='comment-user-image-2'>
+            {% if user.profile_image.image %}
+            <img src="{{user.profile_image.image.url}}">
+            {% else %}
+            <img src="{% static 'usuario.png' %}">
+            {% endif %}   
+            </div>
+        <span class="close-modal_" id="close-modal_">&times;</span>
+        <form method="POST" class="form_post">
+            {% csrf_token %}
+            {{ form.text_content }}
+            <label class = "placeholder-2">Got something to say?</label>
+            <input type="submit" id="submit-comment" name="submit_comment" value="Post" class="submit-button-post">
+        </form>
+    </div>
+</div>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-      const commentBoxes = document.querySelectorAll(".comment-box");
-    
-      commentBoxes.forEach(function(commentBox) {
-        commentBox.addEventListener("click", function() {
-          const url = commentBox.getAttribute("data-url");  
-          if (url) {
-            window.location.href = url;
-          }
-        });
-      });
+        const commentBoxes = document.querySelectorAll(".comment-box");
       
-    });
+        commentBoxes.forEach(function(commentBox) {
+          commentBox.addEventListener("click", function() {
+            const url = commentBox.getAttribute("data-url");  
+            if (url) {
+              window.location.href = url;
+            }
+          });
+        });
+        
+      });
+      var showFormBtn3 = document.getElementById('show-form-post');
+      var modal3 = document.getElementById('my-modal_');
+      var closeModalBtn3 = document.querySelector('.close-modal_');
+     
+  
+        document.getElementById('show-form-post').addEventListener('click', function(event) {
+            event.preventDefault(); 
+        });
+          // Agregar un evento de clic al botón para mostrar el modal
+          showFormBtn3.addEventListener('click', function () {
+            event.preventDefault();
+              modal3.style.display = 'block';
+          });
+         
+  
+          // Agregar un evento de clic al botón para cerrar el modal
+          closeModalBtn3.addEventListener('click', function () {
+              modal3.style.display = 'none';
+          });
+  
+          // Opcional: Agregar un evento para cerrar el modal si se hace clic fuera de él
+          window.addEventListener('click', function (event) {
+              if (event.target === modal3) {
+                  modal3.style.display = 'none';
+              }
+          });
+     
     
     </script> 
 </body>
